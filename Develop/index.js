@@ -3,7 +3,7 @@ console.log('index.js up and running');
 // TODO: Include packages needed for this application
 
 const inquirer = require("inquirer");
-const fs = require('fs');
+const {writeFile} = require('fs').promises;
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -31,35 +31,43 @@ const questions = [
   },
 ];
 
-inquirer.prompt(questions)
-.then((data) => {
-  const filename = `${data.projectTitle.toLowerCase().split(' ').join('')}.json`;
+function generateToC(tableOfContents){
+  if (tableOfContents === 'Yes'){
+    return `## Table of Contents (Optional)
 
-  fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-    err ? console.log(err) : console.log('Success!')
-  );
-});
+If your README is long, add a table of contents to make it easy for users to find what they need.
+    
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)`
+  } else {return ''}
+}
 
-// function promptUser() {
-//   for (const question of questions){
-//     inquirer.prompt(question)
-//     .then((data) => {
-//       const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
-  
-//       fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-//         err ? console.log(err) : console.log('Success!')
-//       );
-//     });
-//   }
-// }
+const generateReadMe = ({projectTitle, projectDescription, tableOfContents, licenses}) =>
+`# ${projectTitle}
 
-// promptUser();
+## Description
 
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
+${projectDescription}
 
-// // TODO: Create a function to initialize app
-// function init() {}
+${generateToC(tableOfContents)}
 
-// // Function call to initialize app
-// init();
+---
+
+## License
+${licenses}`;
+
+const promptUser = () => {
+  return inquirer.prompt(questions);
+}
+
+
+const init = () => {
+  promptUser()
+    .then((answers) => writeFile('README.md', generateReadMe(answers)))
+    .then(() => console.log('Quality README has been generated to folder.'))
+    .catch((err) => console.error(err));
+}
+
+init();
