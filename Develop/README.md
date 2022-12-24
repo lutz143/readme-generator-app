@@ -1,12 +1,7 @@
-# Test1
+# New Test
 
 ## Description
-Testing here
-
-## Installation
-1. Test installation 1
-2. Test installation 2
-3. Test installation 3
+This project will eventually do something.
 
 ## Table of Contents
 
@@ -17,7 +12,17 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Credits](#credits)
 - [License](#license)
 
+## Installation
+1. Do This
+2. Do That
 
+## Usage
+This project should be used with the best intent.
+
+---
+
+## How to Contribute
+You should contribute this way and that way.
 
 ---
 

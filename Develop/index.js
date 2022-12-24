@@ -5,7 +5,7 @@ console.log('index.js up and running');
 const inquirer = require("inquirer");
 const {writeFile} = require('fs').promises;
 
-// Project Title, Description, Table of Contents, Installation, Usage, Contributing, Tests, Questions, License
+// Table of Contents, Contributing, Tests, Questions, License
 
 // TODO: Create an array of questions for user input
 questions = [
@@ -22,6 +22,21 @@ questions = [
   {
   name: 'installation',
   message: 'What are the steps required to install your project?',
+  type: 'editor',
+  },
+  {
+  name: 'usage',
+  message: 'How should your application be used?\nProvide instructions and examples for use. Include screenshots as needed.',
+  type: 'editor',
+  },
+  {
+  name: 'contributions',
+  message: 'If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so.\nThe [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you\'d prefer.',
+  type: 'editor',
+  },
+  {
+  name: 'testInformation',
+  message: 'Provide information about recent undergone tests and how to test the project for bugs.',
   type: 'editor',
   },
   {
@@ -51,7 +66,7 @@ If your README is long, add a table of contents to make it easy for users to fin
   } else {return ''}
 }
 
-const generateReadMe = ({projectTitle, projectDescription, installation, tableOfContents, licenses}) =>
+const generateReadMe = ({projectTitle, projectDescription, installation, usage, contributions, testInformation, tableOfContents, licenses}) =>
 `# ${projectTitle}
 
 ## Description
@@ -61,6 +76,17 @@ ${generateToC(tableOfContents)}
 
 ## Installation
 ${installation}
+
+## Usage
+${usage}
+
+---
+
+## How to Contribute
+${contributions}
+
+## Tests
+${testInformation}
 
 ---
 
