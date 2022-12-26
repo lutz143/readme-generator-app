@@ -39,6 +39,11 @@ questions = [
   message: 'Provide information about recent undergone tests and how to test the project for bugs.',
   type: 'editor',
   },
+  // {
+  // name: 'questions',
+  // message: 'List of questions to consider when utilizing this project.',
+  // type: 'editor',
+  // },
   {
   name: 'licenses',
   message: 'What Licenses are Required:',
@@ -51,6 +56,16 @@ questions = [
   type: 'list',
   choices: ['Yes', 'No'],
   },
+  {
+  name: 'gitHub',
+  message: 'Input your GitHub username:',
+  type: 'input',  
+  },
+  {
+  name: 'email',
+  message: 'Input your email:',
+  type: 'input',  
+  },
 ];
 
 function generateToC(tableOfContents){
@@ -61,12 +76,12 @@ If your README is long, add a table of contents to make it easy for users to fin
     
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
+- [How to Contribute](#how-to-contribute)
 - [License](#license)`
   } else {return ''}
 }
 
-const generateReadMe = ({projectTitle, projectDescription, installation, usage, contributions, testInformation, tableOfContents, licenses}) =>
+const generateReadMe = ({projectTitle, projectDescription, installation, usage, contributions, testInformation, tableOfContents, questions, gitHub, email, licenses}) =>
 `# ${projectTitle}
 
 ## Description
@@ -87,6 +102,10 @@ ${contributions}
 
 ## Tests
 ${testInformation}
+
+## Questions
+* For questions, you may contact me on GitHub: [${gitHub}](https://github.com/${gitHub})
+* For immediate concerns, email me at: ${email}
 
 ---
 
