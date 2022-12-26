@@ -39,16 +39,11 @@ questions = [
   message: 'Provide information about recent undergone tests and how to test the project for bugs.',
   type: 'editor',
   },
-  // {
-  // name: 'questions',
-  // message: 'List of questions to consider when utilizing this project.',
-  // type: 'editor',
-  // },
   {
   name: 'licenses',
   message: 'What Licenses are Required:',
   type: 'checkbox',
-  choices: ['MIT','License2','NEEDMORE'],
+  choices: ['MIT','ISC','NEEDMORE'],
   },
   {
   name: 'tableOfContents',
@@ -81,8 +76,16 @@ If your README is long, add a table of contents to make it easy for users to fin
   } else {return ''}
 }
 
-const generateReadMe = ({projectTitle, projectDescription, installation, usage, contributions, testInformation, tableOfContents, questions, gitHub, email, licenses}) =>
+function generateLicense(licenses) {
+  for (const license of licenses) {
+    return `[![License: ${license}](https://img.shields.io/badge/License-${license}-blue.svg)](https://opensource.org/licenses/${license})`
+  }
+}
+
+const generateReadMe = ({projectTitle, projectDescription, installation, usage, contributions, testInformation, tableOfContents, gitHub, email, licenses}) =>
 `# ${projectTitle}
+
+${generateLicense(licenses)}
 
 ## Description
 ${projectDescription}
