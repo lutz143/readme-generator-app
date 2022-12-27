@@ -14,53 +14,53 @@ questions = [
   message: 'Enter your project title:',
   type: 'input',
   },
-  {
-  name: 'projectDescription',
-  message: 'Provide a description of your project:',
-  type: 'editor',
-  },
-  {
-  name: 'installation',
-  message: 'What are the steps required to install your project?',
-  type: 'editor',
-  },
-  {
-  name: 'usage',
-  message: 'How should your application be used?\nProvide instructions and examples for use. Include screenshots as needed.',
-  type: 'editor',
-  },
-  {
-  name: 'contributions',
-  message: 'If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so.\nThe [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you\'d prefer.',
-  type: 'editor',
-  },
-  {
-  name: 'testInformation',
-  message: 'Provide information about recent undergone tests and how to test the project for bugs.',
-  type: 'editor',
-  },
+  // {
+  // name: 'projectDescription',
+  // message: 'Provide a description of your project:',
+  // type: 'editor',
+  // },
+  // {
+  // name: 'installation',
+  // message: 'What are the steps required to install your project?',
+  // type: 'editor',
+  // },
+  // {
+  // name: 'usage',
+  // message: 'How should your application be used?\nProvide instructions and examples for use. Include screenshots as needed.',
+  // type: 'editor',
+  // },
+  // {
+  // name: 'contributions',
+  // message: 'If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so.\nThe [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you\'d prefer.',
+  // type: 'editor',
+  // },
+  // {
+  // name: 'testInformation',
+  // message: 'Provide information about recent undergone tests and how to test the project for bugs.',
+  // type: 'editor',
+  // },
   {
   name: 'licenses',
   message: 'What Licenses are Required:',
   type: 'checkbox',
   choices: ['MIT','ISC','NEEDMORE'],
   },
-  {
-  name: 'tableOfContents',
-  message: 'Does your project require a Table of Contents:',
-  type: 'list',
-  choices: ['Yes', 'No'],
-  },
-  {
-  name: 'gitHub',
-  message: 'Input your GitHub username:',
-  type: 'input',  
-  },
-  {
-  name: 'email',
-  message: 'Input your email:',
-  type: 'input',  
-  },
+  // {
+  // name: 'tableOfContents',
+  // message: 'Does your project require a Table of Contents:',
+  // type: 'list',
+  // choices: ['Yes', 'No'],
+  // },
+  // {
+  // name: 'gitHub',
+  // message: 'Input your GitHub username:',
+  // type: 'input',  
+  // },
+  // {
+  // name: 'email',
+  // message: 'Input your email:',
+  // type: 'input',  
+  // },
 ];
 
 function generateToC(tableOfContents){
@@ -77,9 +77,12 @@ If your README is long, add a table of contents to make it easy for users to fin
 }
 
 function generateLicense(licenses) {
-  for (const license of licenses) {
-    return `[![License: ${license}](https://img.shields.io/badge/License-${license}-blue.svg)](https://opensource.org/licenses/${license})`
+  var badges = []
+  for (var i=0; i < licenses.length; i++) {
+    var printLicenseBadge = `[![License: ${licenses[i]}](https://img.shields.io/badge/License-${licenses[i]}-blue.svg)](https://opensource.org/licenses/${licenses[i]})`;
+    badges.push(printLicenseBadge);
   }
+  return badges;
 }
 
 const generateReadMe = ({projectTitle, projectDescription, installation, usage, contributions, testInformation, tableOfContents, gitHub, email, licenses}) =>
