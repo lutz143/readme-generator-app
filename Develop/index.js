@@ -1,5 +1,3 @@
-console.log('index.js up and running');
-
 // TODO: Include packages needed for this application
 
 const inquirer = require("inquirer");
@@ -43,7 +41,7 @@ questions = [
   name: 'licenses',
   message: 'What Licenses are Required:',
   type: 'checkbox',
-  choices: ['MIT','ISC','NEEDMORE'],
+  choices: ['MIT','ISC','IPA','JAM'],
   },
   {
   name: 'tableOfContents',
