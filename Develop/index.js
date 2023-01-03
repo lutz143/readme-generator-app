@@ -1,11 +1,10 @@
-// TODO: Include packages needed for this application
-
+// request the inquirer package to display questions to the user
 const inquirer = require("inquirer");
 const {writeFile} = require('fs').promises;
 
-// Table of Contents, Contributing, Tests, Questions, License
 
-// TODO: Create an array of questions for user input
+
+// array of questions with detailed instructions to the user in order to prompt for inputs
 questions = [
   {
   name: 'projectTitle',
@@ -61,6 +60,7 @@ questions = [
   },
 ];
 
+// function to create Table of Contents if user selects yes
 function generateToC(tableOfContents){
   if (tableOfContents === 'Yes'){
     return `## Table of Contents
@@ -74,6 +74,7 @@ If your README is long, add a table of contents to make it easy for users to fin
   } else {return ''}
 }
 
+// function to generate license badges and links to the license selected by the user
 function generateLicense(licenses) {
   if (licenses.length>1) {
     let badges = []
@@ -88,6 +89,7 @@ function generateLicense(licenses) {
   }
 }
 
+// function to generate the quality README file by using template literals and inputting the user selections
 const generateReadMe = ({projectTitle, projectDescription, installation, usage, contributions, testInformation, tableOfContents, gitHub, email, licenses}) =>
 `# ${projectTitle}
 
@@ -121,11 +123,12 @@ ${testInformation}
 ## License
 ${licenses}`;
 
+// function to prompt the user of the array of questions to generate the quality README
 const promptUser = () => {
   return inquirer.prompt(questions);
 }
 
-
+// init function to be called upon application kick off, utilizing promises upon receiving answer from the promptUser function
 const init = () => {
   promptUser()
     .then((answers) => writeFile('README.md', generateReadMe(answers)))
